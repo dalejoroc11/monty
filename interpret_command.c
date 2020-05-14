@@ -6,7 +6,8 @@
  * @fd: file descriptor
  * @fpointer: file pointer
  */
-void interpret_command(char *buf, unsigned int line_number, int fd, FILE *fpointer)
+void interpret_command(char *buf, unsigned int line_number,
+int fd, FILE *fpointer)
 {
 char *token;
 int status;
