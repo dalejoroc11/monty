@@ -8,7 +8,7 @@ void (*get_instruc_func(char *s))(stack_t **stack, unsigned int line_number)
 {
 instruction_t ops[] = {
 {"pall", pall},
-{"nop", nop},
+{"push", push},
 {NULL, NULL}
 };
 int i;
