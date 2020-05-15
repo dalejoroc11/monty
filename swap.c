@@ -1,21 +1,20 @@
 #include "monty.h"
 /**
- * swap - entry point
- * @stack: stack_t variable
- * @line_number: unsigned int variable
+ * _swap - swap
+ * @stack: pointer to list
+ * @line_number: number of line opcode occurs on
  */
-void swap(stack_t **stack, unsigned int line_number)
+void _swap(stack_t **stack, unsigned int line_number)
 {
-stack_t *tmp;
-tmp = *stack;
-if (tmp == NULL || (tmp->next == NULL && tmp->prev == NULL))
+stack_t *runner;
+int tmp;
+runner = *stack;
+if (runner == NULL || runner->next == NULL)
 {
 fprintf(stderr, "L%d: can't swap, stack too short\n", line_number);
 exit(EXIT_FAILURE);
 }
-tmp->prev = tmp->next;
-tmp->next->prev = NULL;
-tmp->next = tmp->next->next;
-tmp->prev->next = tmp;
-(*stack) = tmp->prev;
+tmp = runner->n;
+runner->n = runner->next->n;
+runner->next->n = tmp;
 }
