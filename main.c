@@ -3,7 +3,6 @@
  * main - entry point
  * @ac: int variable
  * @av: char variable
- *
  * Return: 0
  */
 int main(int ac, char **av)
