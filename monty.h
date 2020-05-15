@@ -1,14 +1,13 @@
 #ifndef MONTY_H
 #define MONTY_H
-#define _GNU_SOURCE
 
-#include <stdio.h>
-#include <unistd.h>
-#include <stdlib.h>
-#include <string.h>
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <fcntl.h>
+#include <stdlib.h>
+#include <unistd.h>
+#include <stdio.h>
+#include <string.h>
 
 /**
  * struct stack_s - doubly linked list representation of a stack (or queue)
@@ -40,25 +39,25 @@ typedef struct instruction_s
   void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
 
-extern stack_t *stack;
+void push(stack_t **, unsigned int);
+void pop(stack_t **, unsigned int);
+void swap(stack_t **, unsigned int);
+void pint(stack_t **, unsigned int);
+void add(stack_t **, unsigned int);
+void nop(stack_t **, unsigned int);
+void pall(stack_t **, unsigned int);
+void sub(stack_t **, unsigned int);
+void add(stack_t **, unsigned int);
+void division(stack_t **, unsigned int);
+void mul(stack_t **, unsigned int);
+void mod(stack_t **, unsigned int);
+void pchar(stack_t **, unsigned int);
+void pstr(stack_t **, unsigned int);
 
-void interpret_command(char *buf, unsigned int line_number,
-		       int fd, FILE *fpointer);
-int check_valid_instruc(char *s, unsigned int line_number, char *buf);
-void file_open_status(int fd, char *argv[]);
-void check_arguments(int argc);
+int _isdigit(int);
+void is_opcode(char *, stack_t **, unsigned int);
+char **parse(char *);
+void freestack(stack_t **);
+void check_push(stack_t **, char **, unsigned int);
 
-int isnumber(char *s);
-void (*get_instruc_func(char *s))(stack_t **stack, unsigned int line_number);
-
-void clear_stack(stack_t **h);
-void simple_pop(stack_t **stack);
-
-void push(stack_t **stack, unsigned int line_number);
-void pall(stack_t **stack, unsigned int line_number);
-void pint(stack_t **stack, unsigned int line_number);
-void swap(stack_t **stack, unsigned int line_number);
-void add(stack_t **stack, unsigned int line_number);
-void nop(stack_t **stack, unsigned int line_number);
-
-#endif /* MONTY_H */
+#endif

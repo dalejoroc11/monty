@@ -1,50 +1,26 @@
 #include "monty.h"
 /**
- * pop - the opcode pop removes the top element of the stack
- * @stack: address to pointer to top of the stack
- * @line_number: line_number, voided argument
+ * pop - entry point
+ * @stack: stack_t variable
+ * @line_number: unsigned int variable
  */
 void pop(stack_t **stack, unsigned int line_number)
 {
 stack_t *tmp;
-
-if (*stack == NULL)
+tmp = *stack;
+if ((tmp) == NULL)
 {
-fprintf(stderr, "L%u: can't pop an empty stack\n",
-line_number);
+fprintf(stderr, "L%d: can't pop an empty stack\n", line_number);
 exit(EXIT_FAILURE);
 }
-if ((*stack)->next)
+if (tmp->next == NULL)
 {
-tmp = (*stack)->next;
-free(*stack);
-(*stack) = tmp;
-(*stack)->prev = NULL;
+(*stack) = NULL;
+free(tmp);
 }
 else
 {
-free(*stack);
-*stack = NULL;
-}
-}
-
-/**
- * simple_pop - the opcode pop removes the top element of the stack
- * @stack: address to pointer to top of the stack
- */
-void simple_pop(stack_t **stack)
-{
-stack_t *tmp;
-if ((*stack)->next)
-{
-tmp = (*stack)->next;
-free(*stack);
-(*stack) = tmp;
-(*stack)->prev = NULL;
-}
-else
-{
-free(*stack);
-*stack = NULL;
+tmp = tmp->next;
+tmp->prev = NULL;
 }
 }

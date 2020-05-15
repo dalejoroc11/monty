@@ -1,45 +1,23 @@
 #include "monty.h"
 /**
- * push - push element stack
- * @stack: pointer from stack
- * @line_number: number line assign to the new element
+ * push - entry point
+ * @stack: stack_t variable
+ * @number: int variable
  */
-void push(stack_t **stack, unsigned int line_number)
+void push(stack_t **stack, unsigned int number)
 {
 stack_t *new;
-char *argument;
-int status;
-if (!stack)
-{
-return;
-}
 new = malloc(sizeof(stack_t));
-if (!new)
+if (new == NULL)
 {
 fprintf(stderr, "Error: malloc failed\n");
-clear_stack(stack);
+freestack(stack);
 exit(EXIT_FAILURE);
 }
-argument = strtok(NULL, " ");
-status = isnumber(argument);
-if (status == -1)
-{
-fprintf(stderr, "L%u: usage: push integer\n", line_number);
-exit(EXIT_FAILURE);
-}
-else
-{
-new->n = atoi(argument);
-}
-new->next = *stack;
+new->n = number;
 new->prev = NULL;
-if (*stack == NULL)
-{
-*stack = new;
-}
-else
-{
+new->next = *stack;
+if (*stack != NULL)
 (*stack)->prev = new;
 *stack = new;
-}
 }
